@@ -1,26 +1,56 @@
-import React from 'react';
-import styles from "./Button.module.scss"
 import { Color, Size } from '@/shared';
 import clsx from 'clsx';
+import React from 'react';
+import { Frame, FrameProps } from '../Frame/Frame';
+import styles from './Button.module.scss';
 
-export type ButtonColor = Color.Primary | Color.Secondary | Color.Tertiary | Color.Quaternary;
+type ButtonColor =
+	| Color.Primary
+	| Color.Secondary
+	| Color.Tertiary
+	| Color.Quaternary;
 
-interface IButtonProps{
-	className?: string,
-	color?: ButtonColor
-	size?: Size
-	startIcon?: React.ReactNode,
-	text?: string,
-	endIcon?: React.ReactNode,
+interface Props extends FrameProps, React.HTMLAttributes<HTMLButtonElement> {
+	color?: ButtonColor;
+	text?: string;
+	customContent?: React.ReactNode;
+	disabled?: boolean;
 }
 
-export const Button : React.FC<React.PropsWithChildren<IButtonProps>> = ({className, endIcon, startIcon, color = Color.Primary, text, size = Size.Medium, children}) => {
+export const Button: React.FC<Props> = ({
+	customContent,
+	imageUrl,
+	startIcon,
+	text,
+	endIcon,
+	tag,
+	size = Size.MD,
+	color = Color.Primary,
+	disabled = false,
+	...params
+}) => {
 	return (
-		<button className={clsx([className, styles.button, styles[size.toString()], styles[color.toString()]])}>
-			{startIcon && startIcon}
-			{text && <span className={styles.text}>{text}</span>}
-			{children && children}
-			{endIcon && endIcon}
+		<button
+			{...params}
+			disabled={disabled}
+			className={clsx([
+				styles.button,
+				styles[size.toString()],
+				styles[color.toString()],
+			])}
+		>
+			{customContent ? (
+				customContent
+			) : (
+				<Frame
+					size={size}
+					imageUrl={imageUrl}
+					startIcon={startIcon}
+					children={<span className={styles.text}>{text}</span>}
+					endIcon={endIcon}
+					tag={tag}
+				/>
+			)}
 		</button>
 	);
 };

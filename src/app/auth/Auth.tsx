@@ -1,13 +1,13 @@
 'use client';
 
 import { AuthService, IAuthForm } from '@/entities';
-import { DASHBOARD_PAGES } from '@/shared';
+import { Button, DASHBOARD_PAGES } from '@/shared';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import styles from './Ayth.module.scss';
+import styles from './Auth.module.scss';
 
 export function Auth() {
 	const { register, handleSubmit, reset } = useForm<IAuthForm>({
@@ -33,11 +33,15 @@ export function Auth() {
 		mutate(data);
 	};
 
-	return <div className={styles.wrapper}>
-		<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-			<div className={styles.actions}>
-				auth
-			</div>
-		</form>
-	</div>;
+	return (
+		<div className={styles.wrapper}>
+			<form
+				className={styles.form}
+				onSubmit={handleSubmit(onSubmit)}
+			>
+				<div className={styles.actions}>auth</div>
+				<Button />
+			</form>
+		</div>
+	);
 }

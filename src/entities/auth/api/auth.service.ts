@@ -1,5 +1,5 @@
 import { IAuthForm, IAuthResponse } from '@/entities';
-import { axiosClassic, removeFromStorage, saveTokenStorage } from '@/shared';
+import { axiosClassic, TokenService } from '@/shared';
 
 export const AuthService = {
 	async main(type: 'login' | 'register', data: IAuthForm) {
@@ -9,17 +9,7 @@ export const AuthService = {
 		);
 
 		if (response.data.accessToken)
-			saveTokenStorage(response.data.accessToken);
-
-		return response;
-	},
-
-	async getNewTokens() {
-		const response = await axiosClassic.post<IAuthResponse>(
-			'/auth/login/access-token',
-		);
-		if (response.data.accessToken)
-			saveTokenStorage(response.data.accessToken);
+			TokenService.saveAccessTokenToStorage(response.data.accessToken);
 
 		return response;
 	},
@@ -27,7 +17,7 @@ export const AuthService = {
 	async logout() {
 		const response = await axiosClassic.post<boolean>('/auth/logout');
 
-		if (response.data) removeFromStorage();
+		if (response.data) TokenService.removeAccessTokenFromStorage();
 
 		return response;
 	},
