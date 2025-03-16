@@ -1,5 +1,5 @@
-import { IAuthForm, IAuthResponse } from '@/entities';
-import { axiosClassic, removeFromStorage, saveTokenStorage } from '@/shared';
+import { axiosClassic, IAuthForm, IAuthResponse } from '@/entities';
+import { removeFromStorage, saveTokenStorage } from '@/shared';
 
 export const AuthService = {
 	async main(type: 'login' | 'register', data: IAuthForm) {

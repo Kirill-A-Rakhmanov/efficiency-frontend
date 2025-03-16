@@ -1,5 +1,6 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <option name="RIGHT_MARGIN" value="180" />
     <HTMLCodeStyleSettings>
       <option name="HTML_SPACE_INSIDE_EMPTY_TAG" value="true" />
     </HTMLCodeStyleSettings>
@@ -15,6 +16,7 @@
     <TypeScriptCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />
+      <option name="REFORMAT_C_STYLE_COMMENTS" value="true" />
       <option name="USE_DOUBLE_QUOTES" value="false" />
       <option name="FORCE_QUOTE_STYlE" value="true" />
       <option name="ENFORCE_TRAILING_COMMA" value="WhenMultiline" />
@@ -42,7 +44,8 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
-      <option name="SOFT_MARGINS" value="80" />
+      <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
+      <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
       <indentOptions>
         <option name="USE_TAB_CHARACTER" value="true" />
       </indentOptions>

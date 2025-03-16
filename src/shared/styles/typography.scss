@@ -1,0 +1,314 @@
+@use "sass:map";
+@use "sass:meta";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap');
+
+// Миксин для применения стиля
+@mixin style($type, $weight: medium) {
+  // Применяем стиль на основе переданного типа
+  @if $type == web-display-1 {
+    @include web-display-1;
+  } @else if $type == web-display-2 {
+    @include web-display-2;
+  } @else if $type == web-display-3 {
+    @include web-display-3;
+  } @else if $type == web-heading-1 {
+    @include web-heading-1;
+  } @else if $type == web-heading-2 {
+    @include web-heading-2;
+  } @else if $type == web-heading-3 {
+    @include web-heading-3;
+  } @else if $type == web-heading-4 {
+    @include web-heading-4;
+  } @else if $type == web-heading-5 {
+    @include web-heading-5;
+  } @else if $type == web-heading-6 {
+    @include web-heading-6;
+  } @else if $type == web-title-1 {
+    @include web-title-1;
+  } @else if $type == web-title-2 {
+    @include web-title-2;
+  } @else if $type == web-body-1 {
+    @include web-body-1;
+  } @else if $type == web-body-2 {
+    @include web-body-2;
+  } @else if $type == web-caption-1 {
+    @include web-caption-1;
+  } @else if $type == web-caption-2 {
+    @include web-caption-2;
+  } @else if $type == web-overline {
+    @include web-overline;
+  } @else if $type == service_notion {
+    @include service_notion;
+  } @else if $type == service-title-1 {
+    @include service-title-1;
+  } @else if $type == service-title-2 {
+    @include service-title-2;
+  } @else if $type == service-title-3 {
+    @include service-title-3;
+  } @else if $type == service-body-1 {
+    @include service-body-1;
+  } @else if $type == service-body-2 {
+    @include service-body-2;
+  } @else if $type == service-body-3 {
+    @include service-body-3;
+  } @else if $type == service-body-4 {
+    @include service-body-4;
+  } @else if $type == service-overline {
+    @include service-overline;
+  } @else {
+    @error "Миксин '#{$type}' не найден.";
+  }
+
+  // Применяем вес шрифта
+  @if $weight == medium {
+    @include medium;
+  } @else if $weight == semibold {
+    @include semibold;
+  } @else if $weight == bold {
+    @include bold;
+  } @else {
+    @error "Миксин для веса шрифта '#{$weight}' не найден.";
+  }
+}
+
+@mixin responsive-primary($size) {
+  @if $size == xs {
+    @include web-caption-2
+  } @else if $size == sm {
+    @include web-caption-1
+  } @else if $size == md {
+    @include web-body-2
+  } @else if $size == lg {
+    @include web-body-1
+  } @else if $size == xl {
+    @include web-title-1
+  }
+  @include semibold
+}
+
+@mixin responsive-secondary($size) {
+  @if $size == xs {
+    @include web-caption-2
+  } @else if $size == sm {
+    @include web-caption-2
+  } @else if $size == md {
+    @include web-caption-1
+  } @else if $size == lg {
+    @include web-body-2
+  } @else if $size == xl {
+    @include web-body-1
+  }
+  @include semibold
+}
+
+// Миксины для весов шрифтов
+@mixin medium {
+  font-weight: 500;
+}
+
+@mixin semibold {
+  font-weight: 600;
+}
+
+@mixin bold {
+  font-weight: 700;
+}
+
+// Оригинальные миксины со стилями
+@mixin web-display-1 {
+  font-family: Unbounded, sans-serif;
+  font-size: 104px;
+  font-style: normal;
+  line-height: 110px;
+  letter-spacing: -3.12px;
+}
+
+@mixin web-display-2 {
+  font-family: Unbounded, sans-serif;
+  font-size: 88px;
+  font-style: normal;
+  line-height: 96px;
+}
+
+@mixin web-display-3 {
+  font-family: Unbounded, sans-serif;
+  font-size: 76px;
+  font-style: normal;
+  line-height: 88px;
+}
+
+@mixin web-heading-1 {
+  font-family: Unbounded, sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  line-height: 72px;
+  letter-spacing: -0.64px;
+}
+
+@mixin web-heading-2 {
+  font-family: Unbounded, sans-serif;
+  font-size: 52px;
+  font-style: normal;
+  line-height: 64px;
+  letter-spacing: -0.52px;
+}
+
+@mixin web-heading-3 {
+  font-family: Unbounded, sans-serif;
+  font-size: 44px;
+  font-style: normal;
+  line-height: 64px;
+  letter-spacing: -0.44px;
+}
+
+@mixin web-heading-4 {
+  font-family: Montserrat, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  line-height: 40px;
+  letter-spacing: -0.32px;
+}
+
+@mixin web-heading-5 {
+  font-family: Montserrat, sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  line-height: 40px;
+  letter-spacing: -0.26px;
+}
+
+@mixin web-heading-6 {
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 32px;
+  letter-spacing: -0.2px;
+}
+
+@mixin web-title-1 {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 24px;
+}
+
+@mixin web-title-2 {
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+}
+
+@mixin web-body-1 {
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 20px;
+}
+
+@mixin web-body-2 {
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: -0.14px;
+}
+
+@mixin web-caption-1 {
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 16px;
+}
+
+@mixin web-caption-2 {
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  line-height: 16px;
+}
+
+@mixin web-overline {
+  font-family: Montserrat, sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+@mixin service-title-1 {
+  font-family: Inter, sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  line-height: 110%;
+  /* 55px */
+  letter-spacing: -0.5px;
+}
+
+@mixin service-title-2 {
+  font-family: Inter, sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  line-height: 110%;
+  /* 44px */
+  letter-spacing: -0.4px;
+}
+
+@mixin service-title-3 {
+  font-family: Inter, sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  line-height: 120%;
+  /* 36px */
+  letter-spacing: -0.3px;
+}
+
+@mixin service-body-1 {
+  font-family: Inter, sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  line-height: 120%;
+  /* 30px */
+}
+
+@mixin service-body-2 {
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 125%;
+  /* 25px */
+}
+
+@mixin service-body-3 {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 120%;
+  /* 21.6px */
+}
+
+@mixin service-body-4 {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 120%;
+  /* 19.2px */
+}
+
+@mixin service-overline {
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  line-height: 130%;
+  /* 13px */
+  text-transform: uppercase;
+}
+
+@mixin service_notion {
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: -0.24px;
+}
