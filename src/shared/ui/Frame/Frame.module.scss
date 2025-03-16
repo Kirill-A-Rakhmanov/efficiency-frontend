@@ -1,0 +1,30 @@
+@import '../../styles/utils.scss';
+
+.wrapper {
+	display: flex;
+	align-items: center;
+
+	.start,
+	.end {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.start {
+		.image {
+			@include utils.image;
+			border-radius: 100px;
+		}
+	}
+
+	&.small {
+		gap: 4px;
+	}
+	&.medium {
+		gap: 4px;
+	}
+	&.large {
+		gap: 8px;
+	}
+}

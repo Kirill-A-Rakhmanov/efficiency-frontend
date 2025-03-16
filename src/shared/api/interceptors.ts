@@ -1,6 +1,6 @@
-import { AuthService } from '@/entities';
-import { errorCatch, getAccessToken, removeFromStorage } from '@/shared';
 import axios, { CreateAxiosDefaults } from 'axios';
+import { tokenService } from '../services';
+import { getErrorMessage } from './get-error-message';
 
 const options: CreateAxiosDefaults = {
 	baseURL: 'http://localhost:3000/api',
@@ -14,7 +14,7 @@ export const axiosClassic = axios.create(options);
 export const axiosWithAuth = axios.create(options);
 
 axiosWithAuth.interceptors.request.use(config => {
-	const accessToken = getAccessToken();
+	const accessToken = tokenService.getAccessTokenFromCookie();
 
 	if (config?.headers && accessToken) {
 		config.headers.Authorization = `Bearer ${accessToken}`;
@@ -29,18 +29,18 @@ axiosWithAuth.interceptors.response.use(
 
 		if (
 			(error?.response?.status === 401 ||
-				errorCatch(error) === 'jwt expired' ||
-				errorCatch(error) === 'jwt must be provided') &&
+				getErrorMessage(error) === 'jwt expired' ||
+				getErrorMessage(error) === 'jwt must be provided') &&
 			error.config &&
 			!error.config._isRetry
 		) {
 			try {
 				originalRequest._isRetry = true;
-				await AuthService.getNewTokens();
+				await tokenService.refreshTokens();
 				return axiosWithAuth.request(originalRequest);
 			} catch (error) {
-				if (errorCatch(error) === 'jwt expired') {
-					removeFromStorage();
+				if (getErrorMessage(error) === 'jwt expired') {
+					tokenService.removeAccessTokenFromStorage();
 				}
 			}
 		}
